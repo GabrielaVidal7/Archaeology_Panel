@@ -34,10 +34,12 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("-i", "--input", required=True, help="Nome do arquivo de nuvem de pontos")
     parser.add_argument("-o", "--output", required=True, help="Nome do arquivo do painel de saída")
+    parser.add_argument("-z", "--zoom_out", required=True, help="Valor multiplicativo do vetor normal para dar zoom out no painel")
 
     args = parser.parse_args()
 
     file = args.input
+    zoom_out = args.zoom_out
 
     # Opens point cloud and visualize it
     pcd = open_file(file)
@@ -64,7 +66,7 @@ def main():
 
     img_o3d = views.panel_view(downpcd,
                                downpcd.get_center(),
-                               tuple(map(sum, zip(downpcd.get_center(), normal*12))),
+                               tuple(map(sum, zip(downpcd.get_center(), normal*zoom_out))),
                                [0, 0, 1])
     
     create_panel(img_o3d, args.output)
