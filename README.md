@@ -1,4 +1,4 @@
-# monografiaProcessamento de Nuvens de Pontos na Identificação de Artefatos Humanos Pictóricos em Abrigos Pré-Históricos
+# Processamento de Nuvens de Pontos na Identificação de Artefatos Humanos Pictóricos em Abrigos Pré-Históricos
 
 ## Sobre o projeto
 
