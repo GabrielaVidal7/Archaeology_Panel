@@ -1,4 +1,5 @@
 import open3d as o3d
+import numpy as np
 
 def view(pcd):
     '''
@@ -19,8 +20,10 @@ def view_main_normal(pcd, normal):
         Function that draws the point cloud and a point representing the main normal
     '''
     normal = [normal]
+    rgb = [[0,0,255]]
     pointSet = o3d.geometry.PointCloud()
     pointSet.points = o3d.utility.Vector3dVector(normal)
+    pointSet.colors = o3d.utility.Vector3dVector(np.asarray(rgb).astype(float) / 255.0)
 
     o3d.visualization.draw_geometries([pcd, pointSet])
     return

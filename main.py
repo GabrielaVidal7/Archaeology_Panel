@@ -39,7 +39,7 @@ def main():
     args = parser.parse_args()
 
     file = args.input
-    zoom_out = args.zoom_out
+    zoom_out = int(args.zoom_out)
 
     # Opens point cloud and visualize it
     pcd = open_file(file)
@@ -47,7 +47,7 @@ def main():
 
     #Calls pre-processing downsample and visualizes the downsampled point cloud
     downpcd = pre_processamento.down_sampling(pcd)
-    print("Quantidade de pontos após downsampling: {}".format(downpcd))
+    # print("Quantidade de pontos após downsampling: {}".format(downpcd))
     views.view(downpcd)
 
     # Calculates normal for each point in point cloud and visualizes it
@@ -57,8 +57,8 @@ def main():
     # Calculates main normal using np.mean()
     normal = calc_normal.get_main_normal(downpcd)
 
-    print("Normal mean: {}".format(normal))
-    print("Center of mesh: {}".format(downpcd.get_center()))
+    # print("Normal mean: {}".format(normal))
+    # print("Center of mesh: {}".format(downpcd.get_center()))
 
     normal_point = tuple(map(sum, zip(downpcd.get_center(), normal)))
 
