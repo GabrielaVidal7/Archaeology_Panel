@@ -8,6 +8,12 @@ def get_normals(pcd):
     pcd.estimate_normals(search_param=o3d.geometry.KDTreeSearchParamHybrid(radius=0.1, max_nn=30))
     return
 
+def normalize_normals(pcd):
+    '''
+        Function that normalizes all normals of point cloud
+    '''
+    return pcd.normalize_normals()
+
 def get_main_normal(pcd):
     '''
         Function that calculates the main normal by using np.mean()

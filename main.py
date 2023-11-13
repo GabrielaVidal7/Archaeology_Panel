@@ -6,29 +6,7 @@ import argparse
 import views
 import calc_normal
 import pre_processamento
-
-def open_file(path):
-    '''
-        Function that opens point cloud file
-    '''
-
-    print("Load a ply point cloud")
-    pointCloud = o3d.io.read_point_cloud(path)
-
-    print("Quantidade de pontos pré downsampling: {}".format(pointCloud))
-    
-    return pointCloud
-
-def create_panel(img_o3d, file_name):
-    '''
-        Function that creates image file based on scene renderer
-    '''
-
-    img_cv2 = cv2.cvtColor(np.array(img_o3d), cv2.COLOR_RGBA2BGRA)
-    cv2.imshow("Preview window", img_cv2)
-    cv2.waitKey()
-    file_name = file_name+".png"
-    o3d.io.write_image(file_name, img_o3d, 9)
+import manage_files
 
 def main():
     parser = argparse.ArgumentParser()
@@ -42,7 +20,7 @@ def main():
     zoom_out = int(args.zoom_out)
 
     # Opens point cloud and visualize it
-    pcd = open_file(file)
+    pcd = manage_files.open_file(file)
     views.view(pcd)
 
     #Calls pre-processing downsample and visualizes the downsampled point cloud
@@ -52,6 +30,9 @@ def main():
 
     # Calculates normal for each point in point cloud and visualizes it
     calc_normal.get_normals(downpcd)
+    views.view_normals(downpcd)
+
+    downpcd = calc_normal.normalize_normals(downpcd)
     views.view_normals(downpcd)
 
     # Calculates main normal using np.mean()
@@ -69,7 +50,7 @@ def main():
                                tuple(map(sum, zip(downpcd.get_center(), normal*zoom_out))),
                                [0, 0, 1])
     
-    create_panel(img_o3d, args.output)
+    manage_files.create_panel(img_o3d, args.output)
 
 if __name__ == "__main__":
     main()
