@@ -11,11 +11,15 @@ Para conseguir utilizar o projeto em outros trabalhos, é preciso possuir Python
 
 1. Baixar o repositório
 2. Baixar as seguintes bibliotecas em Python:
-    * Open3D versão 0.15.1
-    * OpenCV
-    * NumPy
+    * Open3D versão 0.15.1 > `pip install open3d==0.15.1`
+    * OpenCV > `pip install opencv-python`
+    * NumPy > `pip install numpy`
+    * Argparse > `pip install argparse`
 3. O formato da nuvem de pontos que o código reconhece é ".ply"
 4. Rodar o seguinte comando: `python main.py -i {path_to_ply_file} -o {name_output_file} -z {zoom_out_value}`
+
+## Nuvens de ponto para reprodutibilidade
+Para ser possível reproduzir o mesmo resultado apresentado no tópico abaixo, basta fazer download do arquivo .zip presente no [Google Drive](https://drive.google.com/file/d/15viDMGfpv98JRauv_QPZsrI0Lw7XJU3j/view?usp=sharing). Na pasta compactada, está a nuvem de pontos original no formato ".ply" e ela após o downsampling, caso queira rodar com uma nuvem de pontos menor.
 
 
 ## Etapas do processamento
@@ -25,14 +29,14 @@ O código desenvolvido passa por algumas etapas de pré-processamento e cálculo
 2. Cálculo das normais presentes em cada ponto da nuvem de ponto reduzida;
 
 <p align="center">
-  <img src="https://github.com/GabrielaVidal7/Archaeology_Panel/blob/main/animacoes/normais_painel_1.gif" alt="animated" width="576" height="324"/>
+  <img src="https://github.com/GabrielaVidal7/Archaeology_Panel/blob/main/Animacoes/normais_painel_1.gif" alt="animated" width="576" height="324"/>
 </p>
 
 3. Normalização das normais calculadas, para evitar que haja um peso entre as normais no cálculo da normal principal;
 4. Cálculo da normal principal (na animação abaixo, o ponto roxo representa a extremidade do vetor normal calculado);
 
 <p align="center">
-  <img src="https://github.com/GabrielaVidal7/Archaeology_Panel/blob/main/animacoes/main_normal_painel_1.gif" alt="animated" width="576" height="324"/>
+  <img src="https://github.com/GabrielaVidal7/Archaeology_Panel/blob/main/Animacoes/main_normal_painel_1.gif" alt="animated" width="576" height="324"/>
 </p>
 
 5. Movimentação da câmera para a posição desejada. Para isso, utiliza-se o parâmetro "zoom_out_value" passado pelo usuário ao rodar o código;
