@@ -1,11 +1,11 @@
 import argparse
+import time
 
 import views
 import calc_normal
 import pre_processamento
 import manage_files
 
-import time
 
 def main():
     inicio = time.time()
